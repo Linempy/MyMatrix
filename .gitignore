@@ -51,6 +51,17 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+.idea/
+*.log
+index-*
+
+cmake-build-*/
+build/
+*.ninja
+*.ninja_deps
+*.ninja_log
+CMakeFiles/
+Testing/
 
 *.xml
 *.iml
