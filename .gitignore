@@ -55,13 +55,5 @@ dkms.conf
 *.log
 index-*
 
-cmake-build-*/
-build/
-*.ninja
-*.ninja_deps
-*.ninja_log
-CMakeFiles/
-Testing/
-
 *.xml
 *.iml

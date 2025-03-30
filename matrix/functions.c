@@ -124,4 +124,32 @@ int matrixSDivTwo(Matrix *outMatrix, const Matrix *m1, double d) {
 }
 
 
+int matrixMul(Matrix *m1, const Matrix *m2) {
+    if (!m1 || !m2) return -1;
+
+    ///проверка размера и NULL;
+
+    Matrix *temp = matrixAlloc(matrixGetH(m1), matrixGetW(m2));
+    if(!temp) return -1;
+    for (size_t nRow = 0; nRow < matrixGetH(m1); nRow++) {
+        for (size_t nColumn = 0; nColumn < matrixGetW(m2); nColumn++) {
+            double c = 0;
+            for (size_t nElement = 0; nElement < matrixGetW(m1); nElement++) {
+                c += *matrixCPtr(m1, nRow, nElement) * *matrixCPtr(m2, nElement, nColumn);
+            }
+            printf("%lf\n", c);
+            *matrixPtr(temp, nRow, nColumn) = c;
+        }
+    }
+
+    printMatrix(temp);
+    if(matrixAssign(m1, temp) == -1) return -1;
+
+    matrixFree(temp);
+
+    return 0;
+
+}
+
+
 

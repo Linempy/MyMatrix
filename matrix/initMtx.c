@@ -46,7 +46,7 @@ const double * matrixCPtr(const Matrix *mtx, size_t i, size_t j) {
         return NULL;
     }
 
-    if (i <= 0 || i > mtx->h || j <= 0 || j > mtx->w) {
+    if (i > mtx->h || j > mtx->w) {
         return NULL;
     }
 
@@ -152,7 +152,7 @@ void printMatrix(Matrix *mtx) {
     for(double *pNum = data, *end = data + size; pNum < end; pNum++) {
         size_t pos = data - pNum;
         if(!(pos % mtx->w) && pos) printf("\n");
-        printf("%lf ", *pNum);
+        printf("%.2lf ", *pNum);
     }
     printf("\n");
 }
@@ -161,8 +161,8 @@ void printMatrix(Matrix *mtx) {
 Matrix* inputMatrix() {
     int w, h;
 
-    printf("Введите ширину и высоту матрицы: ");
-    if (scanf("%d %d", &w, &h) != 2 || w <= 0 || h <= 0) {
+    printf("Введите высоту и ширину матрицы: ");
+    if (scanf("%d %d", &h, &w) != 2 || w <= 0 || h <= 0) {
         printf("Ошибка: некорректные размеры матрицы!\n");
         return NULL;
     }

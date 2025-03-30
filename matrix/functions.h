@@ -6,6 +6,7 @@
 #define MYMATRIX_FUNCTIONS_H
 
 #include "initMtx.h"
+#include <stdio.h>
 
 int matrixAdd(Matrix *m1, const Matrix *m2);
 int matrixSub (Matrix *m1, const Matrix *m2);
@@ -16,5 +17,6 @@ int matrixAddTwo(Matrix *m, const Matrix *m1, const Matrix *m2);
 int matrixSubTwo(Matrix *m, const Matrix *m1, const Matrix *m2);
 int matrixSMulTwo(Matrix *m, const Matrix *m1, double d);
 int matrixSDivTwo(Matrix *m, const Matrix *m1, double d);
+int matrixMul (Matrix *m1, const Matrix *m2);
 
 #endif //MYMATRIX_FUNCTIONS_H

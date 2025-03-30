@@ -6,8 +6,6 @@ set(CMAKE_C_STANDARD 11)
 add_executable(MyMatrix main.c
         matrix/initMtx.h
         matrix/initMtx.c
-        lexicon/lexicon.h
-        lexicon/lexicon.c
         matrix/functions.c
         matrix/functions.h
 )
