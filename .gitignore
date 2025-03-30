@@ -1,56 +1,64 @@
-# Prerequisites
-*.d
+### CLion ###
+# Папки и файлы IDE
+.idea/
+*.iml
+cmake-build-*/
+out/
+cmake-build*/
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Настройки и кэш CLion
+.idea_modules/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/shelf/
+.idea/.name
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# Временные файлы
+*.swp
+*.swo
+*.log
+*.tmp
+*.bak
 
-# Precompiled Headers
-*.gch
-*.pch
+### CMake ###
+# Автоматически генерируемые файлы сборки
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+Testing/
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# Файлы Ninja (генератор сборки)
+build.ninja
+.ninja_deps
+.ninja_log
+rules.ninja
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+### Системные файлы ###
+# Резервные копии и временные файлы
+*~
+*.orig
+*.rej
 
-# Executables
+# Макросы CLion
+*.iws
+
+### Библиотеки и исполняемые файлы ###
+# Скомпилированные бинарники
 *.exe
 *.out
 *.app
-*.i*86
-*.x86_64
-*.hex
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+# Тестовые данные
+*.test
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
-
-
-*.xml
-*.iml
+LastTest.log
