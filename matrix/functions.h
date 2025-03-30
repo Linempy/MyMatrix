@@ -12,9 +12,9 @@ int matrixSub (Matrix *m1, const Matrix *m2);
 void matrixSMul (Matrix *m, double d);
 void matrixSdiv (Matrix *m, double d);
 
-int matrixAdd2 (Matrix *m, const Matrix *m1, const Matrix *m2);
-int matrixSub2 (Matrix *m, const Matrix *m1, const Matrix *m2);
-int matrixSMul2 (Matrix *m, const Matrix *m1, double d);
-int matrixSDiv2 (Matrix *m, const Matrix *m1, double d);
+int matrixAddTwo(Matrix *m, const Matrix *m1, const Matrix *m2);
+int matrixSubTwo(Matrix *m, const Matrix *m1, const Matrix *m2);
+int matrixSMulTwo(Matrix *m, const Matrix *m1, double d);
+int matrixSDivTwo(Matrix *m, const Matrix *m1, double d);
 
 #endif //MYMATRIX_FUNCTIONS_H

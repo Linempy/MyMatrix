@@ -57,8 +57,70 @@ void matrixSMul(Matrix *mtx, double num) {
 
 
 void matrixSDiv (Matrix *mtx, double d) {
-    if (!d || !mtx) return;
+    if (d == 0.0 || !mtx) return;
     matrixSMul(mtx, 1/d);
+}
+
+
+int matrixAddTwo(Matrix *outMatrix, const Matrix *m1, const Matrix *m2){
+    if (!outMatrix || !m1 || !m2) return -1;
+
+    if (matrixGetW(outMatrix) != matrixGetW(m1) ||
+        matrixGetH(outMatrix) != matrixGetH(m1) ||
+        matrixGetW(m1) != matrixGetW(m2) ||
+        matrixGetH(m1) != matrixGetH(m2)) {
+        return -1;
+    }
+
+    if (matrixAssign(outMatrix, m1) == -1) return -1;
+
+    if (matrixAdd(outMatrix, m2) != 0) {
+        return -1;
+    }
+
+    return 0;
+}
+
+
+int matrixSubTwo(Matrix *outMatrix, const Matrix *m1, const Matrix *m2) {
+    if (!outMatrix || !m1 || !m2) return -1;
+
+    if (matrixGetW(outMatrix) != matrixGetW(m1) ||
+        matrixGetH(outMatrix) != matrixGetH(m1) ||
+        matrixGetW(m1) != matrixGetW(m2) ||
+        matrixGetH(m1) != matrixGetH(m2)) {
+        return -1;
+    }
+
+    if (matrixAssign(outMatrix, m1) == -1) return -1;
+
+    if (matrixSub(outMatrix, m2) != 0) return -1;
+
+    return 0;
+}
+
+
+int matrixSMulTwo(Matrix *outMatrix, const Matrix *m1, double num) {
+    if (!outMatrix || !m1) return -1;
+
+    if (matrixGetW(outMatrix) != matrixGetW(m1) ||
+        matrixGetH(outMatrix) != matrixGetH(m1)) {
+        return -1;
+    }
+
+    if(matrixAssign(outMatrix, m1) == -1) return -1;
+    matrixSMul(outMatrix, num);
+
+    return 0;
+}
+
+int matrixSDivTwo(Matrix *outMatrix, const Matrix *m1, double d) {
+    if (d == 0.0 || !m1 || !outMatrix) return -1;
+
+    if (matrixAssign(outMatrix,m1) == -1) return -1;
+
+    matrixSMul(outMatrix, 1/d);
+    return 0;
 }
 
 
