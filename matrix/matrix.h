@@ -33,4 +33,8 @@ void matrixSetId(Matrix *m);   // Сделать единичной
 Matrix * matrixAllocZero(size_t w, size_t h);
 Matrix * matrixAllocId(size_t w, size_t h);
 
+int matrixAssign(Matrix *m1, const Matrix *m2);
+
+void printMatrix(Matrix *mtx);
+
 #endif //MYMATRIX_MATRIX_H

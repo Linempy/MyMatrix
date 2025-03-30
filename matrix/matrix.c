@@ -28,22 +28,6 @@ Matrix * matrixAlloc(size_t w, size_t h) {
 }
 
 
-Matrix * matrixCopy(const Matrix *originMatrix) {
-    Matrix *newMatrix = matrixAlloc(originMatrix->w, originMatrix->h);
-
-    if(!newMatrix) {
-        return NULL;
-    }
-
-    if (originMatrix->data) {
-        size_t size = originMatrix->h * originMatrix->w * sizeof(double);
-        memcpy(newMatrix->data, originMatrix->data, size);
-    }
-
-    return newMatrix;
-}
-
-
 void matrixFree(Matrix *mtx) {
     if (mtx) {
         free(mtx->data);
@@ -131,3 +115,41 @@ Matrix * matrixAllocId(size_t w, size_t h) {
 }
 
 
+int matrixAssign(Matrix *m1, const Matrix *m2) {
+    if (!m1 || !m2) return -1;
+    if (m1->w != m2->w || m1->h != m2->h) {
+        return -1;
+    }
+
+    if (m2->data) {
+        size_t size = originMatrix->h * originMatrix->w * sizeof(double);
+        memcpy(m1->data, originMatrix->data, size);
+    }
+
+    return 0;
+}
+
+
+Matrix * matrixCopy(const Matrix *originMatrix) {
+    Matrix *newMatrix = matrixAlloc(originMatrix->w, originMatrix->h);
+    if(!newMatrix) {
+        return NULL;
+    }
+
+    if(matrixAssign(newMatrix, originMatrix) == -1) {
+        return NULL;
+    }
+
+    return newMatrix;
+}
+
+
+void printMatrix(Matrix *mtx) {
+    size_t size = mtx->w * mtx->h;
+    double * data = mtx->data;
+    for(double *m = data, *end = data + size; m < end; m++) {
+        size_t pos = data - m;
+        if(!(pos % mtx->w) && pos) printf("\n");
+        printf("%lf ", *m);
+    }
+}
