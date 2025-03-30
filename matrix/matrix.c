@@ -122,8 +122,8 @@ int matrixAssign(Matrix *m1, const Matrix *m2) {
     }
 
     if (m2->data) {
-        size_t size = originMatrix->h * originMatrix->w * sizeof(double);
-        memcpy(m1->data, originMatrix->data, size);
+        size_t size = m2->h * m2->w * sizeof(double);
+        memcpy(m1->data, m2->data, size);
     }
 
     return 0;
@@ -145,6 +145,8 @@ Matrix * matrixCopy(const Matrix *originMatrix) {
 
 
 void printMatrix(Matrix *mtx) {
+    if(!mtx) return;
+
     size_t size = mtx->w * mtx->h;
     double * data = mtx->data;
     for(double *m = data, *end = data + size; m < end; m++) {
@@ -152,4 +154,28 @@ void printMatrix(Matrix *mtx) {
         if(!(pos % mtx->w) && pos) printf("\n");
         printf("%lf ", *m);
     }
+    printf("\n");
+}
+
+
+Matrix* inputMatrix() {
+    int w, h;
+
+    printf("Введите ширину и высоту матрицы: ");
+    if (scanf("%d %d", &w, &h) != 2 || w <= 0 || h <= 0) {
+        printf("Ошибка: некорректные размеры матрицы!\n");
+        return NULL;
+    }
+
+    Matrix *mtx = matrixAlloc(w, h);
+    if (!mtx) return NULL;
+
+    size_t size = w * h;
+    printf("Введите %zu элементов через пробел: ", size);
+    for (size_t i = 0; i < size; i++) {
+        scanf("%lf", mtx->data+i);
+    }
+
+    printf("Успех!\n");
+    return mtx;
 }

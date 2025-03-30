@@ -8,10 +8,12 @@ int main(void) {
 
     Matrix *mtx = matrixAllocId(4, 4);
 
-    for(size_t i = 0; i < matrixGetH(mtx) * matrixGetW(mtx); i++) {
-        if(!(i % matrixGetW(mtx)) && i) printf("\n");
-        printf("%lf ", matrixGetData(mtx)[i]);
-    }
+    printMatrix(mtx);
+
+    Matrix *new;
+    new = inputMatrix();
+
+    printMatrix(new);
 
     return 0;
 }

@@ -1,2 +1,3 @@
+C:/Users/mazin/CLionProjects/MyMatrix/cmake-build-debug/CMakeFiles/MyMatrix.dir
 C:/Users/mazin/CLionProjects/MyMatrix/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Users/mazin/CLionProjects/MyMatrix/cmake-build-debug/CMakeFiles/rebuild_cache.dir

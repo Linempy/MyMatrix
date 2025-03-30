@@ -61,5 +61,4 @@ rules.ninja
 # Тестовые данные
 *.test
 
-CMakeLists.txt
 LastTest.log
