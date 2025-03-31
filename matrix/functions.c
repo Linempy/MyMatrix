@@ -137,16 +137,13 @@ int matrixMul(Matrix *m1, const Matrix *m2) {
             for (size_t nElement = 0; nElement < matrixGetW(m1); nElement++) {
                 c += *matrixCPtr(m1, nRow, nElement) * *matrixCPtr(m2, nElement, nColumn);
             }
-            printf("%lf\n", c);
             *matrixPtr(temp, nRow, nColumn) = c;
         }
     }
 
-    printMatrix(temp);
-    if(matrixAssign(m1, temp) == -1) return -1;
+    if(matrixAssignResize(m1, temp) == -1) return -1;
 
     matrixFree(temp);
-
     return 0;
 
 }

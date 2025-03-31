@@ -124,8 +124,29 @@ int matrixAssign(Matrix *m1, const Matrix *m2) {
     if (m2->data) {
         size_t size = m2->h * m2->w * sizeof(double);
         memcpy(m1->data, m2->data, size);
+    } else -1;
+
+    return 0;
+}
+
+
+int matrixAssignResize(Matrix *m1, const Matrix *m2) {
+    if (!m1 || !m2 || !m2->data) return -1;
+
+    if (m1->w == m2->w && m1->h == m2->h) {
+        if (!m1->data) return -1;
+        matrixAssign(m1, m2);
+        return 0;
     }
 
+    double *new_data = realloc(m1->data, m2->w * m2->h * sizeof(double));
+    if (!new_data) return -1;
+
+    m1->data = new_data;
+    m1->w = m2->w;
+    m1->h = m2->h;
+
+    matrixAssign(m1, m2);
     return 0;
 }
 
