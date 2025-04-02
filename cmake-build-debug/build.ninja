@@ -67,6 +67,12 @@ build CMakeFiles/MyMatrix.dir/matrix/functions.c.obj: C_COMPILER__MyMatrix_unsca
   OBJECT_DIR = CMakeFiles\MyMatrix.dir
   OBJECT_FILE_DIR = CMakeFiles\MyMatrix.dir\matrix
 
+build CMakeFiles/MyMatrix.dir/matrix/manipulation.c.obj: C_COMPILER__MyMatrix_unscanned_Debug C$:/Users/mazin/CLionProjects/MyMatrix/matrix/manipulation.c || cmake_object_order_depends_target_MyMatrix
+  DEP_FILE = CMakeFiles\MyMatrix.dir\matrix\manipulation.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\MyMatrix.dir
+  OBJECT_FILE_DIR = CMakeFiles\MyMatrix.dir\matrix
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target MyMatrix
@@ -75,7 +81,7 @@ build CMakeFiles/MyMatrix.dir/matrix/functions.c.obj: C_COMPILER__MyMatrix_unsca
 #############################################
 # Link the executable MyMatrix.exe
 
-build MyMatrix.exe: C_EXECUTABLE_LINKER__MyMatrix_Debug CMakeFiles/MyMatrix.dir/main.c.obj CMakeFiles/MyMatrix.dir/matrix/initMtx.c.obj CMakeFiles/MyMatrix.dir/matrix/functions.c.obj
+build MyMatrix.exe: C_EXECUTABLE_LINKER__MyMatrix_Debug CMakeFiles/MyMatrix.dir/main.c.obj CMakeFiles/MyMatrix.dir/matrix/initMtx.c.obj CMakeFiles/MyMatrix.dir/matrix/functions.c.obj CMakeFiles/MyMatrix.dir/matrix/manipulation.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\MyMatrix.dir

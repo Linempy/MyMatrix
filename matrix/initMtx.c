@@ -171,7 +171,7 @@ void printMatrix(Matrix *mtx) {
     size_t size = mtx->w * mtx->h;
     double * data = mtx->data;
     for(double *pNum = data, *end = data + size; pNum < end; pNum++) {
-        size_t pos = data - pNum;
+        size_t pos = pNum - data;
         if(!(pos % mtx->w) && pos) printf("\n");
         printf("%.2lf ", *pNum);
     }

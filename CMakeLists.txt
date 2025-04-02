@@ -8,4 +8,6 @@ add_executable(MyMatrix main.c
         matrix/initMtx.c
         matrix/functions.c
         matrix/functions.h
+        matrix/manipulation.c
+        matrix/manipulation.h
 )
