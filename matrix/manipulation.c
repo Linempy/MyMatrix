@@ -27,4 +27,3 @@ void matrixTransposition(Matrix *mtx) {
         }
     }
 }
-

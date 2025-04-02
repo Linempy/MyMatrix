@@ -57,3 +57,4 @@ index-*
 
 *.xml
 *.iml
+cmake-build-debug/
