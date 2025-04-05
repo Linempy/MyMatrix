@@ -57,4 +57,15 @@ index-*
 
 *.xml
 *.iml
+# CMake и сборка
 cmake-build-debug/
+build/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+*.ninja
+.ninja_deps
+.ninja_log
+/.cmake/
+/Testing/
