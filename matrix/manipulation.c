@@ -14,7 +14,6 @@ void matrixTransposition(Matrix *mtx) {
     size_t h = matrixGetH(mtx);
     if(w != h) return;
 
-    size_t size = w * h;
     for (size_t i = 0; i < w; i++) {
         for (size_t j = i + 1; j < w; j++) {
             double *a = matrixPtr(mtx, i, j);
@@ -26,7 +25,8 @@ void matrixTransposition(Matrix *mtx) {
     }
 }
 
-/// отсчет с 0!!!!
+
+/// отсчет с 0!!
 void matrixPermutationRow(Matrix *mtx, size_t row1, size_t row2) {
     if (!mtx || !matrixGetData(mtx)) {
         fprintf(stderr, "Ошибка: NULL pointer\n");
@@ -52,12 +52,18 @@ void matrixPermutationRow(Matrix *mtx, size_t row1, size_t row2) {
 }
 
 void matrixPermutationColumn(Matrix *mtx, size_t column1, size_t column2) {
-    if (!mtx || !matrixGetData(mtx)) return;
+    if (!mtx || !matrixGetData(mtx)) {
+        fprintf(stderr, "Ошибка: NULL pointer\n");
+        return;
+    }
 
     size_t w = matrixGetW(mtx);
     size_t h = matrixGetH(mtx);
     if (column1 == column2) return;
-    if (column1 >= w || column2 >= w) return;
+    if (column1 >= w || column2 >= w) {
+        fprintf(stderr, "Ошибка: Индекс строки за границами\n");
+        return;
+    }
 
     for (size_t i = 0; i < h; i++) {
         double *a = matrixPtr(mtx, i, column1);
@@ -70,7 +76,15 @@ void matrixPermutationColumn(Matrix *mtx, size_t column1, size_t column2) {
 
 
 void matrixMulRowOnNum(Matrix *mtx, size_t row, double num) {
-    if (!mtx || !matrixGetData(mtx) || row >= matrixGetH(mtx)) return;
+    if (!mtx || !matrixGetData(mtx) || row >= matrixGetH(mtx)) {
+        fprintf(stderr, "Ошибка: некорректные данные\n");
+        return;
+    }
+
+    if(fabs(num) < 1e-10) {
+        fprintf(stderr, "Ошибка: умножение строки на 0\n");
+        return;
+    }
 
     for (size_t j = 0; j < matrixGetW(mtx); j++) {
         double *elem = matrixPtr(mtx, row, j);

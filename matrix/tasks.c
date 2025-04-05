@@ -83,7 +83,8 @@ static void nullifyColumnBack(Matrix *A, Matrix *B, size_t i, size_t j) {
 bool isSingular(const Matrix* A, size_t col) {
     double max_val = 0.0;
     for (size_t i = col; i < matrixGetW(A); i++) {
-        max_val = fmax(max_val, fabs(*matrixCPtr(A, i, col)));
+        double current = fabs(*matrixCPtr(A, i, col));
+        max_val = (current > max_val) ? current : max_val;
     }
     return (max_val < 1e-10 * matrixGetH(A));
 }
@@ -157,7 +158,7 @@ void checkSolution(Matrix* A, const Matrix* X, const Matrix* B) {
         return;
     }
 
-    // residual = B + (-AX)
+    // residual = B - AX)
     if (matrixSub(residual, AX) == -1) {
         fprintf(stderr, "Ошибка сложения матриц\n");
         matrixFree(AX);
@@ -173,10 +174,8 @@ void checkSolution(Matrix* A, const Matrix* X, const Matrix* B) {
     printf("\nОжидаемый вектор B:\n");
     printMatrix(B);
 
-
     printf("\nНорма: %e\n", matrixInfNorm(residual));
 
-    // Освобождаем память
     matrixFree(AX);
     matrixFree(residual);
 }

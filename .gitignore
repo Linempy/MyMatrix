@@ -59,7 +59,7 @@ index-*
 *.iml
 # CMake и сборка
 cmake-build-debug/
-build/
+build/*
 CMakeFiles/
 CMakeCache.txt
 Makefile

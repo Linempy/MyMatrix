@@ -29,13 +29,15 @@ Matrix * matrixAlloc(size_t w, size_t h) {
 
 
 void matrixFree(Matrix* mtx) {
-    if (!mtx) {
+    if (!mtx) return;
+
+    if (mtx->h == 0 && mtx->w == 0 && mtx->data == NULL) {
         return;
     }
 
     if (mtx->data) {
         if (mtx->h == 0 || mtx->w == 0) {
-            fprintf(stderr, "Warning: Invalid matrix dimensions during free\n");
+            fprintf(stderr, "Ошибка освобождения памяти\n");
         }
 
         free(mtx->data);
