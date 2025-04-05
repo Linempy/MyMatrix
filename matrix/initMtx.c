@@ -28,11 +28,24 @@ Matrix * matrixAlloc(size_t w, size_t h) {
 }
 
 
-void matrixFree(Matrix *mtx) {
-    if (mtx) {
-        free(mtx->data);
-        free(mtx);
+void matrixFree(Matrix* mtx) {
+    if (!mtx) {
+        return;
     }
+
+    if (mtx->data) {
+        if (mtx->h == 0 || mtx->w == 0) {
+            fprintf(stderr, "Warning: Invalid matrix dimensions during free\n");
+        }
+
+        free(mtx->data);
+        mtx->data = NULL;
+    }
+
+    mtx->h = 0;
+    mtx->w = 0;
+
+    free(mtx);
 }
 
 
@@ -81,10 +94,10 @@ void matrixSetZero(Matrix *mtx) {
 
 
 void matrixSetId(Matrix *mtx) {
-    if (!mtx || !mtx->data) return;
+    if (!mtx || !mtx->data || mtx->w != mtx->h) return;
 
     size_t w = mtx->w, h = mtx->h;
-    if (w != h || !w || !h) return;
+    if (!w || !h) return;
 
     for (double *num = mtx->data, *end = mtx->data + w*h; num < end; num++) {
         size_t pos = (num - mtx->data);
@@ -93,11 +106,40 @@ void matrixSetId(Matrix *mtx) {
 }
 
 
+bool matrixSetData(Matrix *mtx, const double *new_data, size_t size) {
+    if (!mtx || !new_data || mtx->w == 0 || mtx->h == 0) {
+        fprintf(stderr, "Ошибка: Некорректные параметры\n");
+        return false;
+    }
+
+    const size_t required_size = mtx->w * mtx->h;
+    if (size != required_size) {
+        fprintf(stderr, "Ошибка: Неверный размер данных (ожидалось %zu, получено %zu)\n",
+                required_size, size);
+        return false;
+    }
+
+    double *new_buffer = malloc(required_size * sizeof(double));
+    if (!new_buffer) {
+        fprintf(stderr, "Ошибка выделения памяти\n");
+        return false;
+    }
+
+    // Копируем данные
+    memcpy(new_buffer, new_data, required_size * sizeof(double));
+
+    free(mtx->data);
+    mtx->data = new_buffer;
+
+    return true;
+}
+
+
 Matrix * matrixAllocZero(size_t w, size_t h) {
+    if (!w || !h) return NULL;
+
     Matrix *mtx = matrixAlloc(w, h);
     if (!mtx) return NULL;
-
-    if (w != h || !w || !h) return NULL;
 
     matrixSetZero(mtx);
     return mtx;
@@ -105,7 +147,7 @@ Matrix * matrixAllocZero(size_t w, size_t h) {
 
 
 Matrix * matrixAllocId(size_t w, size_t h) {
-    if (w != h || !w || !h) return NULL;
+    if (w != h || w == 0) return NULL;
 
     Matrix *mtx = matrixAlloc(w, h);
     if (!mtx) return NULL;
@@ -140,7 +182,10 @@ int matrixAssignResize(Matrix *m1, const Matrix *m2) {
     }
 
     double *new_data = realloc(m1->data, m2->w * m2->h * sizeof(double));
-    if (!new_data) return -1;
+    if (!new_data) {
+        fprintf(stderr, "Memory reallocation failed\n");
+        return -1;
+    }
 
     m1->data = new_data;
     m1->w = m2->w;
@@ -166,7 +211,10 @@ Matrix * matrixCopy(const Matrix *originMatrix) {
 
 
 void printMatrix(Matrix *mtx) {
-    if(!mtx) return;
+    if(!mtx || !mtx->data) {
+        printf("Invalid matrix\n");
+        return;
+    }
 
     size_t size = mtx->w * mtx->h;
     double * data = mtx->data;
@@ -194,7 +242,11 @@ Matrix* inputMatrix() {
     size_t size = w * h;
     printf("Введите %zu элементов через пробел: ", size);
     for (size_t i = 0; i < size; i++) {
-        scanf("%lf", mtx->data+i);
+        if (scanf("%lf", mtx->data+i) != 1) {
+            fprintf(stderr, "Input error at element %zu\n", i);
+            matrixFree(mtx);
+            return NULL;
+        }
     }
 
     printf("Успех!\n");
