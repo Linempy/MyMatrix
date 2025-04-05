@@ -2,10 +2,10 @@
 // Created by mazin on 02.04.2025.
 //
 
-#ifndef MYMATRIX_MANIPULATION_H
-#define MYMATRIX_MANIPULATION_H
+#ifndef MYMATRIX_MTX_MANIPULATION_H
+#define MYMATRIX_MTX_MANIPULATION_H
 
-#include "initMtx.h"
+#include "mtx_core.h"
 #include <math.h>
 
 /**
@@ -67,4 +67,4 @@ void matrixAdditionRows(Matrix *mtx, size_t row1, size_t row2, double coeff);
 double matrixInfNorm(const Matrix *mtx);
 
 
-#endif //MYMATRIX_MANIPULATION_H
+#endif //MYMATRIX_MTX_MANIPULATION_H

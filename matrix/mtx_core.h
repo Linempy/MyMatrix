@@ -2,8 +2,8 @@
 // Created by mazin on 29.03.2025.
 //
 
-#ifndef MYMATRIX_INITMTX_H
-#define MYMATRIX_INITMTX_H
+#ifndef MYMATRIX_MTX_CORE_H
+#define MYMATRIX_MTX_CORE_H
 
 #include <stddef.h>
 #include <stdlib.h>
@@ -143,4 +143,4 @@ void printMatrix(Matrix* mtx);
 Matrix* inputMatrix();
 
 
-#endif //MYMATRIX_INITMTX_H
+#endif //MYMATRIX_MTX_CORE_H

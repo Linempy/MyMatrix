@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "matrix/initMtx.h"
-#include "matrix/operations.h"
-#include "matrix/manipulation.h"
-#include "matrix/tasks.h"
+#include "matrix/mtx_core.h"
+#include "matrix/mtx_ops.h"
+#include "matrix/mtx_manipulation.h"
+#include "matrix/mtx_tasks.h"
 
 
 int main(void) {

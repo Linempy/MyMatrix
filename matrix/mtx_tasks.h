@@ -2,13 +2,13 @@
 // Created by mazin on 03.04.2025.
 //
 
-#ifndef MYMATRIX_TASKS_H
-#define MYMATRIX_TASKS_H
+#ifndef MYMATRIX_MTX_TASKS_H
+#define MYMATRIX_MTX_TASKS_H
 
 #include <math.h>
-#include "initMtx.h"
-#include "operations.h"
-#include "manipulation.h"
+#include "mtx_core.h"
+#include "mtx_ops.h"
+#include "mtx_manipulation.h"
 
 
 /**
@@ -39,4 +39,4 @@ Matrix* solutionLinSystem(Matrix *A, Matrix *B);
  */
 void checkSolution(Matrix* A, const Matrix* X, const Matrix* B);
 
-#endif //MYMATRIX_TASKS_H
+#endif //MYMATRIX_MTX_TASKS_H

@@ -2,7 +2,7 @@
 // Created by mazin on 30.03.2025.
 //
 
-#include "operations.h"
+#include "mtx_ops.h"
 
 int matrixAdd(Matrix *m1, const Matrix *m2) {
     if (!m1 || !m2) return -1;

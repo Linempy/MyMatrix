@@ -2,12 +2,12 @@
 // Created by mazin on 30.03.2025.
 //
 
-#ifndef MYMATRIX_OPERATIONS_H
-#define MYMATRIX_OPERATIONS_H
+#ifndef MYMATRIX_MTX_OPS_H
+#define MYMATRIX_MTX_OPS_H
 
 #include <stdio.h>
 #include <stdbool.h>
-#include "initMtx.h"
+#include "mtx_core.h"
 
 /**
  * @brief Поэлементное сложение матриц (m1 += m2).
@@ -97,4 +97,4 @@ int matrixMul(Matrix *m1, const Matrix *m2);
  */
 int matrixMulSecond(Matrix *outMatrix, Matrix *m1, const Matrix *m2);
 
-#endif //MYMATRIX_OPERATIONS_H
+#endif //MYMATRIX_MTX_OPS_H

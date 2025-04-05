@@ -2,7 +2,7 @@
 // Created by mazin on 03.04.2025.
 //
 
-#include "tasks.h"
+#include "mtx_tasks.h"
 
 
 Matrix* matrixExp(const Matrix *mtx, double eps) {
